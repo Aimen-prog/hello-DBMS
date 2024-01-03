@@ -76,19 +76,75 @@ Cette opération MongoDB insère un document représentant un client avec son no
 ````
 db.client.insert({ nom: 'Client A', commande: ['Product1', 'Product2'] });
 ````
+<hr>
 
 <b>E.</b> Qu’est ce qu’une base de données relationnelle ? Qu’est ce qu’une base de
-données non relationnelle ? Donnez la différence entre les deux avec des
-exemples d’applications
+données non relationnelle ? Donnez la différence entre les deux avec des exemples d’applications
 
 
 
+# Job0: Setup 
+
+$ sudo mysql<br>
+mysql> CREATE DATABASE aimen_dbms;<br>
+mysql> SHOW DATABASES;<br>
+mysql> USE aimen_dbms;<br>
 
 
 
+CREATE TABLE world (<br>
+    name VARCHAR(255),<br>
+    region VARCHAR(255),<br>
+    population DOUBLE,<br>
+    area FLOAT,<br>
+    population_density FLOAT,<br> 
+    coastline_ratio FLOAT,<br>
+    net_migration FLOAT,<br> 
+    infant_mortality FLOAT,<br> 
+    gdp_per_capita INT,<br>
+    literacy_rate DOUBLE,<br> 
+    phones_per_1000 FLOAT,<br>
+    arable_percent FLOAT,<br> 
+    crops_percent FLOAT,<br>
+    other_percent FLOAT,<br>
+    climate VARCHAR(255),<br>
+    birthrate FLOAT,<br>
+    deathrate FLOAT,<br> 
+    agriculture DOUBLE,<br>
+    industry FLOAT,<br>
+    service FLOAT<br>
+);
+    
 
 
 
+LOAD DATA INFILE '/var/lib/mysql-files/countriesoftheworld.csv'<br>
+INTO TABLE world<br>
+FIELDS TERMINATED BY ',' ENCLOSED BY '"'<br>
+LINES TERMINATED BY '\n'<br>
+IGNORE 1 ROWS<br>
+(@name, @region, @population, @area, @population_density, @coastline_ratio, @net_migration, @infant_mortality, @gdp_per_capita, @literacy_rate, @phones_per_1000, @arable_percent, @crops_percent, @other_percent, @climate, @birthrate, @deathrate, @agriculture, @industry, @service)<br>
+SET<br>
+    name = TRIM(@name),<br>
+    region = TRIM(@region),<br>
+    population = IF(@population = '', 0.0, REPLACE(@population, ',', '.')),<br>
+    area = IF(@area = '', 0.0, REPLACE(@area, ',', '.')),<br>
+    population_density = IF(@population_density = '', 0.0, REPLACE(@population_density, ',', '.')),<br>
+    coastline_ratio = IF(@coastline_ratio = '', 0.0, REPLACE(@coastline_ratio, ',', '.')),<br>
+    net_migration = IF(@net_migration = '', 0.0, REPLACE(@net_migration, ',', '.')),<br>
+    infant_mortality = IF(@infant_mortality = '', 0.0, REPLACE(@infant_mortality, ',', '.')),<br>
+    gdp_per_capita = IF(@gdp_per_capita = '', 0.0, REPLACE(@gdp_per_capita, ',', '.')),<br>
+    literacy_rate = IF(@literacy_rate = '', 0.0, REPLACE(@literacy_rate, ',', '.')),<br>
+    phones_per_1000 = IF(@phones_per_1000 = '', 0.0, REPLACE(@phones_per_1000, ',', '.')),<br>
+    arable_percent = IF(@arable_percent = '', 0.0, REPLACE(@arable_percent, ',', '.')),<br>
+    crops_percent = IF(@crops_percent = '', 0.0, REPLACE(@crops_percent, ',', '.')),<br>
+    other_percent = IF(@other_percent = '', 0.0, REPLACE(@other_percent, ',', '.')),<br>
+    climate = TRIM(@climate),<br>
+    birthrate = IF(@birthrate = '', 0.0, REPLACE(@birthrate, ',', '.')),<br>
+    deathrate = IF(@deathrate = '', 0.0, REPLACE(@deathrate, ',', '.')),<br>
+    agriculture = IF(@agriculture = '', 0.0, REPLACE(@agriculture, ',', '.')),<br>
+    industry = IF(@industry = '', 0.0, REPLACE(@industry, ',', '.')),<br>
+    service = IF(@service = '', 0.0, REPLACE(@service, ',', '.'));
 
 
 
