@@ -149,18 +149,53 @@ SET
 
 
 ## Run
-Exemple :
+
 ````
 mysql> source Bureau/job1.sql
 ````
 
 
+## BIG JOB: Requirements
 
+````
+conda create -n bigjob python=3.8 
+conda activate bigjob
+pip install -r requirements.txt
+````
+For connecting to MySQL in a Flask application, it's advisable to create a separate user with a password and grant appropriate permissions to that user for the specific database you are working with.
+Log in to your MySQL server using the root account:
 
+````
+sudo mysql
+````
+Inside the >> MySQL shell, create a new user and grant privileges:
 
+````
+CREATE USER 'your_user'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON CarbonFootprint.* TO 'your_user'@'localhost';
+FLUSH PRIVILEGES;
+````
 
+Replace 'your_user' and 'your_password' with your chosen username and password.
+<br>Make sure your password is composed of uppercase, lowercase, special characters and numbers.
 
+<br>Then, Modify your Flask App's connect function:
+````
+def connect_db():
+    host = 'localhost'
+    user = 'your_user'
+    database = 'CarbonFootprint'
+    password = os.environ.get('DB_PASSWORD')
+    ...etc
+````
 
+As you can see, the password was purposely hidden in the app for security reasons also!
+<br>You will put the password when you call the app on terminal like this:
+
+````
+export DB_PASSWORD='your_password'
+python app.py
+````
 
 
 
