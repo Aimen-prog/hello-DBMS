@@ -69,7 +69,7 @@ def annual_emissions():
     emissions = country_df['total_emission'].values[0] / 1000
     year_hours = 24 * 365
     annual_emissions = electricity_consumed * year_hours * emissions
-
+    # tree compensation for the carbon dioxide
     tree_abs = 25
     number_of_trees = annual_emissions / tree_abs
 
