@@ -14,14 +14,13 @@
 </head>
 <body>
 
-<h4>Annual Emissions Results</h4>
+<h1>Annual Emissions Results</h1>
 
-<p> {{error}}</p>
+<h3>Country: {{ selected_country }} </h3>
+<h3>Emissions: {{ result }} </h3>
+<h3>Needed trees: {{trees}}</h3>
 
-<p>Country: {{ selected_country }} </p>
-<p>Emissions: {{ result }} kg of CO2</p>
-<p>Needed trees: {{trees}}</p>
-<h3> Error in your selection: {{error}}</h3>
+<h3>{{error}}</h3>
 <br>
 <button class="button" onclick="window.location.href='{{ url_for('emissions') }}'">Go back to emissions</button>
 <hr>
