@@ -356,7 +356,7 @@ def connect_db():
 ````
 
 As you can see, the password was purposely hidden in the app for security reasons also!
-<br>You will put the password when you call the app on terminal like this:
+<br>You will put the password when you call the app on terminal from app directory like this:
 
 ````
 conda activate bigjob
