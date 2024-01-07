@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>CarbonFootprint Analyzer</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+
+</head>
+<body>
+    <div class="container mt-4">
+        <table class="table table-bordered" id="dataTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Country Name</th>
+                    <th>Coal(%)</th>
+                    <th>Gas(%)</th>
+                    <th>Oil(%)</th>
+                    <th>Hydroelectricity(%)</th>
+                    <th>Renewable(excl. Hydro) (%)</th>
+                    <th>Nuclear(%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for country in countries %}
+                    <tr>
+                        <td>{{ country.country }}</td>
+                        <td>{{ country.coal }}</td>
+                        <td>{{ country.gas }}</td>
+                        <td>{{ country.oil }}</td>
+                        <td>{{ country.hydro }}</td>
+                        <td>{{ country.renewable }}</td>
+                        <td>{{ country.nuclear }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="button" onclick="window.location.href='{{ url_for('home') }}'">Go back to home page</button>
+        <button class="button" onclick="window.location.href='{{ url_for('regions') }}'">Explore regions</button>
+
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // DataTable initialization with search and ordering features
+            $('#dataTable').DataTable({
+                "order": [], // Disable initial sorting
+                "dom": '<"top"f>t<"bottom"ip>',
+                "language": {
+                    "search": "",
+                    "searchPlaceholder": "Search..."
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

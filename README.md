@@ -193,6 +193,7 @@ As you can see, the password was purposely hidden in the app for security reason
 <br>You will put the password when you call the app on terminal like this:
 
 ````
+conda activate bigjob
 export DB_PASSWORD='your_password'
 python app.py
 ````

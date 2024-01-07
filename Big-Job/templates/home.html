@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>CarbonFootprint Analyzer</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="apptitle"><span class="fancy">CarbonFootprint Analyzer</span></h1>
+        <h3>Welcome to CarbonFootprint Analyzer,</h3>
+        <h3> We provide insights into the carbon footprint data of different countries and regions. Click the buttons below to explore our data:</h3>
+        <center>
+        <button class="button" onclick="window.location.href='{{ url_for('countries') }}'">Explore countries</button>
+        <button class="button" onclick="window.location.href='{{ url_for('regions') }}'">Explore regions</button>
+        </center>
+    </div>
+</body>
+</html>
