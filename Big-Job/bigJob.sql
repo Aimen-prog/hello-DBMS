@@ -116,6 +116,8 @@ SELECT country, Coal + Gas + Oil AS 'sum' FROM Country ORDER BY sum ASC LIMIT 5;
 SELECT region, Coal + Gas + Oil AS 'sum' FROM World WHERE region != 'World' ORDER BY sum ASC LIMIT 5;
 
 
+-- observations:
+
 -- Les pays les plus consommateurs de charbon sont : Kosovo, Botswana, South Africa, Mongolia et Estonia
 -- Les regions les plus consommatrices de charbon sont : South Asia, East Asia & Pacific, SubSaharan Africa, North America et Europe & Central    
 

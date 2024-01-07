@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="container mt-4">
+    <div style="margin-right: 140px;margin-top: 30px;margin-bottom: 90px;margin-left: 50px;">
         <table class="table table-bordered" id="dataTable">
             <thead class="thead-dark">
                 <tr>
@@ -24,25 +24,37 @@
                     <th>Hydroelectricity(%)</th>
                     <th>Renewable(excl. Hydro) (%)</th>
                     <th>Nuclear(%)</th>
+                    <th>Coal Emission contribution gCO2/kWh</th>
+                    <th>Gas Emission contribution gCO2/kWh</th>
+                    <th>Oil Emission contribution gCO2/kWh</th>
+                    <th>Hydroelectricity Emission contribution gCO2/kWh</th>
+                    <th>Renewable Emission contribution gCO2/kWh</th>
+                    <th>Nuclear Emission contribution gCO2/kWh</th>
                 </tr>
             </thead>
             <tbody>
-                {% for country in countries %}
+                {% for emission in emissions %}
                     <tr>
-                        <td>{{ country.country }}</td>
-                        <td>{{ country.coal }}</td>
-                        <td>{{ country.gas }}</td>
-                        <td>{{ country.oil }}</td>
-                        <td>{{ country.hydro }}</td>
-                        <td>{{ country.renewable }}</td>
-                        <td>{{ country.nuclear }}</td>
+                        <td>{{emission.country   }}</td>
+                        <td>{{ emission.coal }}</td>
+                        <td>{{ emission.gas }}</td>
+                        <td>{{ emission.oil }}</td>
+                        <td>{{ emission.hydro }}</td>
+                        <td>{{ emission.renewable }}</td>
+                        <td>{{ emission.nuclear }}</td>
+
+                        <td>{{ emission.coal_emission }}</td>
+                        <td>{{ emission.gas_emission }}</td>
+                        <td>{{ emission.oil_emission }}</td>
+                        <td>{{ emission.hydro_emission }}</td>
+                        <td>{{ emission.renewable_emission }}</td>
+                        <td>{{ emission.nuclear_emission }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
         <button class="button" onclick="window.location.href='{{ url_for('home') }}'">Go back to home page</button>
         <button class="button" onclick="window.location.href='{{ url_for('regions') }}'">Explore regions</button>
-        <button class="button" onclick="window.location.href='{{ url_for('emissions') }}'">CO2 emissions</button>
 
     </div>
 

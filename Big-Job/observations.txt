@@ -1,0 +1,14 @@
+The countries with the highest coal consumption are: Kosovo, Botswana, South Africa, Mongolia, and Estonia.
+The regions with the highest coal consumption are: South Asia, East Asia & Pacific, Sub-Saharan Africa, North America, and Europe & Central.
+The countries with the highest gas consumption are: Qatar, Turkmenistan, Bahrain, Trinidad and Tobago, and Brunei Darussalam.
+The regions with the highest gas consumption are: Middle East & North Africa, Latin America & Caribbean, North America, Europe & Central, and East Asia & Pacific.
+The countries with the highest oil consumption are: South Sudan, Eritrea, Benin, Lebanon, and Malta.
+The regions with the highest oil consumption are: Middle East & North Africa, Latin America & Caribbean, South Asia, Sub-Saharan Africa, and East Asia & Pacific.
+The countries with the highest hydroelectricity consumption are: Albania, Paraguay, Congo DR, Nepal, and Namibia.
+The regions with the highest hydroelectricity consumption are: Latin America & Caribbean, Sub-Saharan Africa, Europe & Central, East Asia & Pacific, and North America.
+The countries with the highest nuclear energy consumption are: France, Slovak Republic, Hungary, Ukraine, and Belgium.
+The regions with the highest nuclear energy consumption are: Europe & Central, North America, East Asia & Pacific, Sub-Saharan Africa, and South Asia.
+The countries most dependent on renewable energies (the most eco-friendly) are: Nepal, Albania, Paraguay, Congo, Dem. Rep., and Iceland.
+The regions most dependent on renewable energies (the most eco-friendly) are: Latin America & Caribbean, Europe & Central, Sub-Saharan Africa, North America, and East Asia & Pacific.
+The least polluting countries are: Albania, Iceland, Nepal, Paraguay, and Congo DR.
+The least polluting continents (regions) are: Latin America & Caribbean, Europe & Central, North America, Sub-Saharan Africa, and East Asia & Pacific.

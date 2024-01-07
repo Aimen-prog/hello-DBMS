@@ -11,7 +11,12 @@
     <div class="container mt-4">
         <h1 class="apptitle"><span class="fancy">CarbonFootprint Analyzer</span></h1>
         <h3>Welcome to CarbonFootprint Analyzer,</h3>
-        <h3> We provide insights into the carbon footprint data of different countries and regions. Click the buttons below to explore our data:</h3>
+        <h3> We provide insights into the carbon footprint data of different countries and regions.</h3>
+        <h3>Some data highlights/observations:</h3>
+        {% for observation in obs %}
+        <ul>{{observation}}</ul>
+        {% endfor %}
+        <h3> Click the buttons below to explore our data:</h3>
         <center>
         <button class="button" onclick="window.location.href='{{ url_for('countries') }}'">Explore countries</button>
         <button class="button" onclick="window.location.href='{{ url_for('regions') }}'">Explore regions</button>
