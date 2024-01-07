@@ -56,21 +56,27 @@ def emission_contributions():
 def annual_emissions():
     electricity_consumed = (request.form['countryInput'])
     if electricity_consumed == "":
-        return render_template('emissions.html', result="Please select a value (kW)")
+        return render_template('co2.html', error="Please select a correct consumption value (in kW)")
 
     electricity_consumed = float(electricity_consumed)
     selected_country = request.form['countrySelect']
 
     if selected_country == "all":
-        return render_template('emissions.html', result= "Please select a single country")
+        return render_template('co2.html', error= "Please select a single country")
 
     df = emission_contributions()
     country_df = df[df["country"] == selected_country]
     emissions = country_df['total_emission'].values[0] / 1000
     year_hours = 24 * 365
     annual_emissions = electricity_consumed * year_hours * emissions
-    country_df['annual_emissions'] = annual_emissions
-    return render_template('emissions.html', result=str(annual_emissions) + str(" kg of CO2 :"), selected_country=selected_country)
+
+    tree_abs = 25
+    number_of_trees = annual_emissions / tree_abs
+
+    return render_template('co2.html', result=str(annual_emissions) , selected_country=selected_country,
+                           trees = number_of_trees)
+
+
 
 # select all table of regions and emissions
 def get_regions():
