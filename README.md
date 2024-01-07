@@ -1,4 +1,11 @@
 # hello-DBMS+
+
+La VEILLE + INSTRUCTIONS JOB0 + BIGJOB
+<br>
+
+ENJOY ;)
+
+
 <hr>
 <b>A.</b> Qu’est ce qu’une donnée ? Sous quelle forme peut-elle se présenter ?
 
@@ -81,8 +88,167 @@ db.client.insert({ nom: 'Client A', commande: ['Product1', 'Product2'] });
 <b>E.</b> Qu’est ce qu’une base de données relationnelle ? Qu’est ce qu’une base de
 données non relationnelle ? Donnez la différence entre les deux avec des exemples d’applications
 
+Une base de données relationnelle et une base de données non relationnelle sont deux types différents de systèmes de gestion de bases de données (SGBD) qui stockent et organisent les données de manière distincte.
 
+Base de données relationnelle :
 
+Une base de données relationnelle repose sur le modèle relationnel, introduit par Edgar Codd dans les années 1970. Ce modèle organise les données sous forme de tables composées de lignes et de colonnes. Chaque table représente une entité, et chaque ligne de la table représente un enregistrement ou une occurrence de cette entité. Les relations entre les tables sont établies à l'aide de clés étrangères.
+
+Caractéristiques :
+
+    Structure tabulaire avec des lignes et des colonnes.
+    Les relations entre les tables sont définies par des clés primaires et étrangères.
+    Utilise le langage SQL (Structured Query Language) pour interagir avec la base de données.
+    Assure la cohérence et l'intégrité des données.
+
+Exemples d'applications :
+
+    MySQL
+    PostgreSQL
+    Oracle Database
+    Microsoft SQL Server
+
+Base de données non relationnelle (NoSQL) :
+
+Les bases de données non relationnelles, également appelées NoSQL, diffèrent des bases de données relationnelles en termes de modèles de données. Elles ne reposent pas sur le modèle tabulaire traditionnel, et il existe différents types de modèles de données NoSQL, tels que le modèle de document, le modèle de graphe, le modèle de colonnes, etc.
+
+Caractéristiques :
+
+    Peut utiliser différents modèles de données.
+    Évite souvent le schéma fixe, permettant une flexibilité dans la structure des données.
+    Évite généralement l'utilisation de SQL traditionnel.
+    Souvent utilisé pour des applications avec des besoins de mise à l'échelle horizontale et de traitement de données massives.
+
+Exemples d'applications :
+
+    MongoDB (modèle de document)
+    Cassandra (modèle de colonnes)
+    Neo4j (modèle de graphe)
+    Redis (base de données clé-valeur)
+
+Différences principales :
+
+Modèle de données : Relationnel pour les bases de données relationnelles, divers (document, colonnes, graphes, etc.) pour les bases de données non relationnelles.
+
+Schéma : Fixe et prédéfini pour les bases de données relationnelles, souvent flexible pour les bases de données non relationnelles.
+
+Langage de requête : SQL pour les bases de données relationnelles, langages spécifiques ou absence de langage standardisé pour les bases de données non relationnelles.
+
+Applications : Les bases de données relationnelles sont souvent utilisées dans des applications où la cohérence et la structure rigide des données sont essentielles, tandis que les bases de données non relationnelles sont couramment utilisées dans des applications nécessitant une évolutivité facile et une flexibilité de schéma.
+
+<hr>
+<b>F.</b> Définissez les notions de clé étrangère et clé primaire
+
+En SQL, une clé primaire (Primary Key) et une clé étrangère (Foreign Key) sont des concepts essentiels pour établir des relations entre les tables dans une base de données relationnelle.
+
+Clé Primaire (Primary Key) :
+
+Une clé primaire est une colonne (ou un ensemble de colonnes) qui identifie de manière unique chaque enregistrement dans une table.
+Chaque table ne peut avoir qu'une seule clé primaire.
+La clé primaire garantit l'unicité des valeurs dans la colonne désignée, ce qui facilite l'identification et la manipulation des enregistrements.
+Elle est définie lors de la création de la table à l'aide de la clause PRIMARY KEY.
+
+Clé Étrangère (Foreign Key) :
+
+Une clé étrangère est une colonne (ou un ensemble de colonnes) qui établit une relation entre deux tables.
+Elle pointe vers la clé primaire d'une autre table, établissant ainsi une liaison entre ces deux tables.
+La clé étrangère est utilisée pour maintenir l'intégrité référentielle, en s'assurant que les valeurs dans la colonne de la clé étrangère existent également dans la colonne de la clé primaire de la table référencée.
+Elle est définie lors de la création de la table à l'aide de la clause FOREIGN KEY.
+
+<hr>
+
+<b>G.</b> Quelles sont les propriétés ACID ?
+
+Les transactions dans les bases de données relationnelles sont définies par quatre propriétés essentielles regroupées sous l'acronyme ACID : Atomicité, Cohérence, Isolation, et Durabilité. L'Atomicité garantit que chaque élément d'une transaction est traité de manière complète, la Cohérence maintient l'intégrité des données après une transaction, l'Isolation assure que les effets d'une transaction ne sont visibles pour d'autres qu'après son engagement, et la Durabilité assure que les modifications de données deviennent permanentes une fois la transaction engagée.
+<hr>
+
+<b>H.</b> Définissez les méthodes Merise et UML. Quelles sont leur utilité dans le monde
+de l’informatique ?
+
+Merise :
+
+Définition : Méthode de conception de systèmes d'information qui utilise des modèles conceptuels, organisationnels et physiques pour décrire et structurer les données, les traitements et les flux d'informations.
+Utilité : Merise est utilisée pour modéliser et concevoir des systèmes d'information, notamment pour la gestion de bases de données.
+
+UML (Unified Modeling Language) :
+
+Définition : Langage de modélisation graphique utilisé pour visualiser, spécifier, construire et documenter les artefacts d'un système logiciel.
+Utilité : UML est utilisé pour la modélisation conceptuelle, la conception, la documentation et la communication entre les parties prenantes d'un projet logiciel.
+
+Cas d'utilisation :
+
+Merise : Utilisé pour concevoir une base de données relationnelle. Par exemple, un diagramme entité-association (schéma conceptuel) peut représenter les entités, les relations et les attributs dans un système d'information.
+
+UML : Utilisé pour modéliser les classes et leurs relations dans un système orienté objet. Par exemple, un diagramme de classes UML peut représenter les classes, les attributs et les méthodes d'un système logiciel.
+
+<hr>
+<b>I.</b> Définissez le langage SQL. Donnez les commandes les plus utilisées de ce langage et les différentes jointures qu’il est possible de faire
+
+SQL (Structured Query Language) :
+Définition : Langage de programmation standardisé utilisé pour gérer et manipuler des bases de données relationnelles. Il permet de créer, mettre à jour, interroger et gérer les données dans une base de données.
+
+Commandes SQL couramment utilisées :
+
+SELECT : Sélectionne des données à partir d'une ou plusieurs tables.
+````
+SELECT colonne1, colonne2 FROM table WHERE condition;
+````
+INSERT : Insère de nouvelles lignes de données dans une table.
+````
+INSERT INTO table (colonne1, colonne2) VALUES (valeur1, valeur2);
+````
+UPDATE : Met à jour des données existantes dans une table.
+````
+UPDATE table SET colonne1 = nouvelle_valeur WHERE condition;
+````
+DELETE : Supprime des lignes de données d'une table.
+````
+DELETE FROM table WHERE condition;
+````
+CREATE : Crée une nouvelle table, vue, index, etc.
+````
+CREATE TABLE nouvelle_table (colonne1 datatype, colonne2 datatype, ...);
+````
+ALTER : Modifie la structure d'une table existante.
+````
+ALTER TABLE table ADD colonne datatype;
+````
+DROP : Supprime une table, une vue, un index, etc.
+
+````
+    DROP TABLE table;
+````
+Différentes jointures en SQL :
+
+INNER JOIN : Retourne les lignes lorsque des correspondances sont trouvées dans les deux tables.
+````
+SELECT * FROM table1 INNER JOIN table2 ON table1.colonne = table2.colonne;
+````
+LEFT JOIN (ou LEFT OUTER JOIN) : Retourne toutes les lignes de la table de gauche et les lignes correspondantes de la table de droite.
+
+````
+SELECT * FROM table1 LEFT JOIN table2 ON table1.colonne = table2.colonne;
+````
+
+RIGHT JOIN (ou RIGHT OUTER JOIN) : Retourne toutes les lignes de la table de droite et les lignes correspondantes de la table de gauche.
+
+````
+SELECT * FROM table1 RIGHT JOIN table2 ON table1.colonne = table2.colonne;
+````
+
+FULL JOIN (ou FULL OUTER JOIN) : Retourne toutes les lignes lorsque des correspondances sont trouvées dans l'une des tables.
+
+````
+SELECT * FROM table1 FULL JOIN table2 ON table1.colonne = table2.colonne;
+````
+CROSS JOIN : Retourne le produit cartésien des deux tables (toutes les combinaisons possibles).
+
+````
+SELECT * FROM table1 CROSS JOIN table2;
+````
+Ces commandes et jointures représentent une partie essentielle de l'utilisation quotidienne du langage SQL dans la gestion des bases de données relationnelles.
+
+<hr>
 
 # Job0: Setup 
 ````
@@ -198,7 +364,9 @@ export DB_PASSWORD='your_password'
 python app.py
 ````
 
+# Author
 
+Aimen CHERIF
 
 
 
