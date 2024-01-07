@@ -13,17 +13,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div style="margin-right: 140px;margin-top: 30px;margin-bottom: 90px;margin-left: 50px;">
-        <label for="countrySelect">Select Country:</label>
-        <select id="countrySelect" class="form-control">
+    <div style="margin-right: 10px;margin-top: 30px;margin-bottom: 90px;margin-left: 10px;">
+
+
+        <form method="post">
+        <label >Select Country:</label>
+        <select id="countrySelect" class="form-control" name="countrySelect">
             <option value="all">All Countries</option>
             {% for country in countries %}
                 <option value="{{ country.country }}">{{ country.country }}</option>
             {% endfor %}
         </select>
+
         <hr>
-
-
         <table class="table table-bordered" id="dataTable">
             <thead class="thead-dark">
                 <tr>
@@ -40,6 +42,7 @@
                     <th>Hydroelectricity Emission contribution gCO2/kWh</th>
                     <th>Renewable Emission contribution gCO2/kWh</th>
                     <th>Nuclear Emission contribution gCO2/kWh</th>
+                    <th>Total Emission contribution gCO2/kWh</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,10 +62,23 @@
                         <td>{{ emission.hydro_emission }}</td>
                         <td>{{ emission.renewable_emission }}</td>
                         <td>{{ emission.nuclear_emission }}</td>
+                        <td>{{ emission.total_emission }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <hr>
+            <label for="countryInput"><h4>Enter the electricity consumed (in kW) to calculate the CO2 emissions for the selected country during a year:</h4></label>
+            <input type="text" id="countryInput" class="form-control" name="countryInput">
+            <br>
+            <button type="submit" class="button">Calculate Emissions</button>
+        </form>
+
+        <br>
+        <h4>Annual Emissions Result</h4>
+        <p>{{ result }} {{ selected_country }} </p>
+
+        <hr>
         <button class="button" onclick="window.location.href='{{ url_for('home') }}'">Go back to home page</button>
         <button class="button" onclick="window.location.href='{{ url_for('countries') }}'">Go back to countries</button>
         <button class="button" onclick="window.location.href='{{ url_for('regions') }}'">Explore regions</button>

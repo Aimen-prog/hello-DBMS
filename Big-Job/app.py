@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template
+
+from flask import Flask, render_template, request
 import mysql.connector
 import pandas as pd
 
@@ -40,16 +41,36 @@ def emission_contributions():
     country_df = pd.DataFrame(countries_data)
     emission_df = pd.read_csv("carbon_dioxide_emissions.csv", sep=';',  encoding='ISO-8859-1')
     mediane = emission_df['Médiane de gC02/kWh']
-    country_df['coal_emission'] = round((country_df['coal']*mediane[0]), 3)
-    country_df['gas_emission'] = round((country_df['gas']*mediane[1]), 3)
-    country_df['oil_emission'] = round((country_df['oil']*mediane[2]), 3)
-    country_df['hydro_emission'] = round((country_df['hydro']*mediane[3]), 3)
-    country_df['renewable_emission'] = round((country_df['renewable']*mediane[4]), 3)
-    country_df['nuclear_emission'] = round((country_df['nuclear']*mediane[5]), 3)
-    pd.set_option('display.max_columns', None)
-    emissions = country_df.to_dict(orient='records')
-    return emissions
+    country_df['coal_emission'] = round((country_df['coal']/100*mediane[0]), 2)
+    country_df['gas_emission'] = round((country_df['gas']/100*mediane[1]), 2)
+    country_df['oil_emission'] = round((country_df['oil']/100*mediane[2]), 2)
+    country_df['hydro_emission'] = round((country_df['hydro']/100*mediane[3]), 2)
+    country_df['renewable_emission'] = round((country_df['renewable']/100*mediane[4]), 2)
+    country_df['nuclear_emission'] = round((country_df['nuclear']/100*mediane[5]), 2)
+    country_df['total_emission'] = round((country_df['coal_emission'] + country_df['gas_emission'] + country_df['oil_emission'] + country_df['hydro_emission']
+                                    + country_df['renewable_emission'] + country_df['nuclear_emission']),2)
+    return country_df
 
+#Émissions annuelles totales de CO2 = Émissions totales en kgCO2/kWh x nombre d'heures dans une année x consommation électrique
+@app.route('/emissions', methods=['POST'])
+def annual_emissions():
+    electricity_consumed = (request.form['countryInput'])
+    if electricity_consumed == "":
+        return render_template('emissions.html', result="Please select a value (kW)")
+
+    electricity_consumed = float(electricity_consumed)
+    selected_country = request.form['countrySelect']
+
+    if selected_country == "all":
+        return render_template('emissions.html', result= "Please select a single country")
+
+    df = emission_contributions()
+    country_df = df[df["country"] == selected_country]
+    emissions = country_df['total_emission'].values[0] / 1000
+    year_hours = 24 * 365
+    annual_emissions = electricity_consumed * year_hours * emissions
+    country_df['annual_emissions'] = annual_emissions
+    return render_template('emissions.html', result=str(annual_emissions) + str(" kg of CO2 :"), selected_country=selected_country)
 
 # select all table of regions and emissions
 def get_regions():
@@ -86,7 +107,8 @@ def countries():
 @app.route('/emissions')
 def emissions():
     countries = get_countries()
-    emissions = emission_contributions()
+    country_df = emission_contributions()
+    emissions = country_df.to_dict(orient='records')
     return render_template('emissions.html', countries=countries, emissions=emissions)
 
 # all regions table deployment
