@@ -14,6 +14,16 @@
 </head>
 <body>
     <div style="margin-right: 140px;margin-top: 30px;margin-bottom: 90px;margin-left: 50px;">
+        <label for="countrySelect">Select Country:</label>
+        <select id="countrySelect" class="form-control">
+            <option value="all">All Countries</option>
+            {% for country in countries %}
+                <option value="{{ country.country }}">{{ country.country }}</option>
+            {% endfor %}
+        </select>
+        <hr>
+
+
         <table class="table table-bordered" id="dataTable">
             <thead class="thead-dark">
                 <tr>
@@ -54,6 +64,7 @@
             </tbody>
         </table>
         <button class="button" onclick="window.location.href='{{ url_for('home') }}'">Go back to home page</button>
+        <button class="button" onclick="window.location.href='{{ url_for('countries') }}'">Go back to countries</button>
         <button class="button" onclick="window.location.href='{{ url_for('regions') }}'">Explore regions</button>
 
     </div>
@@ -67,13 +78,24 @@
 
     <script>
         $(document).ready(function() {
-            // DataTable initialization with search and ordering features
-            $('#dataTable').DataTable({
-                "order": [], // Disable initial sorting
+            var table = $('#dataTable').DataTable({
+                "order": [],
                 "dom": '<"top"f>t<"bottom"ip>',
                 "language": {
                     "search": "",
                     "searchPlaceholder": "Search..."
+                }
+            });
+
+            // Add an event listener to the countrySelect dropdown
+            $('#countrySelect').on('change', function() {
+                var selectedCountry = $(this).val();
+
+                // clear previous search
+                table.search('').columns().search('').draw();
+                if (selectedCountry !== 'all') {
+                    // apply a search for the selected country to the first column
+                    table.columns(0).search(selectedCountry).draw();
                 }
             });
         });

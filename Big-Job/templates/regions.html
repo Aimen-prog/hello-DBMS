@@ -14,6 +14,15 @@
 
 </head>
 <body>
+<div class="container mt-4">
+    <label for="regionSelect">Select Region:</label>
+    <select id="regionSelect" class="form-control">
+        <option value="all">All Regions</option>
+        {% for region in regions %}
+            <option value="{{ region.region }}">{{ region.region}}</option>
+        {% endfor %}
+    </select>
+    <hr>
     <div class="container mt-4">
         <table class="table table-bordered" id="dataTable">
             <thead class="thead-dark">
@@ -52,15 +61,27 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
+
     <script>
         $(document).ready(function() {
-            // DataTable initialization with search and ordering features
-            $('#dataTable').DataTable({
-                "order": [], // Disable initial sorting
+            var table = $('#dataTable').DataTable({
+                "order": [],
                 "dom": '<"top"f>t<"bottom"ip>',
                 "language": {
                     "search": "",
                     "searchPlaceholder": "Search..."
+                }
+            });
+
+            // Add an event listener to the regionSelect dropdown
+            $('#regionSelect').on('change', function() {
+                var selectedRegion = $(this).val();
+
+                // clear previous search
+                table.search('').columns().search('').draw();
+                if (selectedRegion !== 'all') {
+                    // apply a search for the selected country to the first column
+                    table.columns(0).search(selectedRegion).draw();
                 }
             });
         });

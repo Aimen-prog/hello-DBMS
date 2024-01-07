@@ -85,8 +85,9 @@ def countries():
 # co2 emissions
 @app.route('/emissions')
 def emissions():
+    countries = get_countries()
     emissions = emission_contributions()
-    return render_template('emissions.html', emissions=emissions)
+    return render_template('emissions.html', countries=countries, emissions=emissions)
 
 # all regions table deployment
 @app.route('/regions')
